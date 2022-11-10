@@ -63,14 +63,12 @@ class ProfCoursTest extends TestCase
 
         print "Création des variables. \n";
         self::$prof_a = [
-            
-            
+             
             /**
             *
             * Question 6 : Insérer les enregistrements suivantes dans la table prof 
             *
             */
-            
             new Prof("Nom_prof1", "Prenom_prof1", "10/01/1982", "lieu_prof1"),      // idprof = 1
             new Prof("Nom_prof2", "Prenom_prof2", "10/02/1982", "lieu_prof2"),      // idprof = 2
             new Prof("Nom_prof3", "Prenom_prof3", "10/03/1982", "lieu_prof3"),      // idprof = 3
@@ -81,12 +79,14 @@ class ProfCoursTest extends TestCase
             new Prof("Nom_prof8", "Prenom_prof8", "10/08/1982", "lieu_prof8"),      // idprof = 8       ** A SUPPRIMER **
             new Prof("Nom_prof9", "Prenom_prof9", "10/09/1982", "lieu_prof9"),      // idprof = 9
             new Prof("Nom_prof10", "Prenom_prof10", "10/10/1982", "lieu_prof10")    // idprof = 10      ** A MODIFIER **
+
         ];
 
+    
         self::$cours_a = [
-            new Cours("Cours1", "2", 1),       // idcours = 1
-            new Cours("Cours2", "2.5", 3),     // idcours = 2
-            new Cours("Cours3", "3", 5),       // idcours = 3
+            new Cours("IOT", "10", 1),       // idcours = 1
+            new Cours("IA", "12", 3),     // idcours = 2
+            new Cours("EDL", "5", 5),       // idcours = 3
             new Cours("Cours4", "2", 3),       // idcours = 4
             new Cours("Cours5", "3", 3),       // idcours = 5
             new Cours("Cours6", "2", 4),       // idcours = 6
@@ -181,6 +181,12 @@ class ProfCoursTest extends TestCase
             $cours->add($conn);
         }
         
+        $expected = count(self::$cours_a);
+        $num_records = Cours::count($conn);
+        $this->assertEquals($expected, $num_records, "Enregistrement des cours ...\n");
+        $this->assertCount($num_records, self::$cours_a, "Enregistrement des cours ...\n");
+
+        
         /**
         *
         * Question 8 : Dans la fonction « testAdd() », s’inspirer de test d’ajout des profs pour tester l’ajout des cours.   
@@ -218,7 +224,16 @@ class ProfCoursTest extends TestCase
         * s’inspirer de test de la sélection et affichage des profs pour tester la sélection et l’affichage des cours.   
         *
         */
-  
+        print __METHOD__."\n";
+
+        // Cours
+        $record_cours_a = Cours::printAll($conn);
+        print "########## - LISTE DES Cours - AVANT TOUT ########## \n";
+        foreach ( $record_cours_a as $record_cours_a ) {
+            print $record_prof;
+        }
+        print "################################################################\n\n";
+        $this->assertCount(count(Self::$cours_a), $record_cours_a, "Nombre d'enregistrement égale pour Cours\n");
         
     }
     

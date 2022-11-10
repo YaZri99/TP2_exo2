@@ -28,6 +28,7 @@ class Prof {
         $this->prenom = $prenom;
         $this->datenaiss = $datenaiss;
         $this->lieunaiss = $lieunaiss;
+        
     }
 
     /**
