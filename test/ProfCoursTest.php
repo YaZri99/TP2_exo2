@@ -213,7 +213,7 @@ class ProfCoursTest extends TestCase
             print $record_prof;
         }
         print "################################################################\n\n";
-        $this->assertCount(count(Self::$prof_a), $record_prof_a, "Nombre d'enregistrement égale pour Prof\n");
+        $this->assertCount(count(Self::$prof_a), $record_prof_a, "Nombre d'enregistrement égale pour  Prof\n");
 
         
         // Cours
